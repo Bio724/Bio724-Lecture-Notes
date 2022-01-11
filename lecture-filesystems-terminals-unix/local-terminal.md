@@ -3,7 +3,6 @@
 ## Terminology
 
 * A "terminal" is a text input/output environment for interacting with your computer. A terminal used to be a physical device attached to a computer. Strictly speaking, these days we run "terminal emulators" -- graphical programs that emulate terminals.
-* 
 * A "shell" is a program that runs in a terminal that processes and interprets the command you type. You can run different shells in the same terminal.
 
 

@@ -7,9 +7,11 @@
 # Remote Computing
 
 * Set up a Linux VM on the Duke [Virtual Computing Manager](https://vcm.duke.edu/) site
-* Log into your virtual machine using SSH
+* [Log into your virtual machine using SSH](./ssh-duke-vm.md)
 * Working with remote files
-    * Configuring VS Code for Remote Development
+    * [Moving files to/from your VM](./remote-files.md)
+    * [Configuring VS Code for Remote Development](./remote-development-vscode.md)
 
 # Introduction to Unix
+
 

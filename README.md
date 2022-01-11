@@ -1,2 +1,7 @@
 # Bio724-Lecture-Notes
-Lecture Notes for Bio 724
+
+
+1. [File systems, terminals/shells, and an introduction to Unix](local-and-remote-computing.md)
+
+
+    

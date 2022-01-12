@@ -21,3 +21,8 @@
 * [Pipes and redirection](./unix-pipes.md)
 * [Getting help at the command line](./getting-help-unix.md)
 * [Unix core utilities](./unix-coreutils.md)
+
+
+# Example data
+
+  * [yeast_genome_features.txt](https://github.com/Bio724/Bio724-Example-Data/raw/main/yeast_genome_features.txt) -- a tab-delimited file derived from the standard genome annotation GFF file from the Saccharomyces Genome Database.

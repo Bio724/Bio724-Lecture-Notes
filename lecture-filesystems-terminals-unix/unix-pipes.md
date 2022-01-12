@@ -12,9 +12,7 @@ By default, stdin is usually associated with keyboard input and stdout and stder
 
 ## Redirection and pipes
 
-Video: [Brian Kernighan on Unix pipelines](https://www.youtube.com/watch?v=bKzonnwoR2I)
 
-Additional reading: [Five ways to use redirect operators in Bash](https://www.redhat.com/sysadmin/redirect-operators-bash)
 
 * `>` -- redirect the output operator. Sends the output of the command on the left to the file, device, or stream on the right. If the file already exists, it will be overwritten. If the file doesn't exist it will be created.
   - `echo "Hello, World!"` -- by default, stdout is associated with the terminal so executing this command command prints the result of the echo command to terminal display.
@@ -26,10 +24,6 @@ Additional reading: [Five ways to use redirect operators in Bash](https://www.re
   echo "first line" >> lines.txt
   echo "second line" >> lines.txt
   ```
-
-  
-* `|` -- pipe operator. The output of the command on the left is used as the input for the command on the right.
-  - `ls *.jpg | wc -l` -- list all files ending in `.jpg` and count how many they are using the `wc` utility
 
 
 * `<` -- redirect input operator
@@ -45,6 +39,15 @@ Additional reading: [Five ways to use redirect operators in Bash](https://www.re
   tr '[:upper:]' '[:lower:]' < hello.txt > lower_hello.txt
   ```
 
+  
+* `|` -- pipe operator. The output of the command on the left is used as the input for the command on the right.
+  - `ls *.jpg | wc -l` -- list all files ending in `.jpg` and count how many they are using the `wc` utility
 
 
+
+### More about redirection and pipes
+
+Additional reading: [Five ways to use redirect operators in Bash](https://www.redhat.com/sysadmin/redirect-operators-bash)
+
+Video: [Brian Kernighan on Unix pipelines](https://www.youtube.com/watch?v=bKzonnwoR2I)
 

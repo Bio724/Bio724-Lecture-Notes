@@ -1,5 +1,7 @@
 # Configuring VS Code for Remote Development
 
+We'll be using the Visual Studio Code (VSCode) text editor for many of our programming tasks.  One of the powerful aspects of VSCode is it's powerful extension system. We will use the [Visual Studio Code Remote Development Extension Pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) to facilitate working with files on our virtual machines.
+
 ## Installing the Remote Development extension
 
 * Choose the "Extensions" icon on the left sidebar in VS Code 

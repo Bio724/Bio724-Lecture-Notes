@@ -14,5 +14,4 @@
 ## Windows
 
 * Default terminal is "Command Prompt" but new "Windows Terminal" is better choice
-* Several options for  shell but I recommend "Powershell"
-  
+* Several options for shell but I recommend "Powershell"

@@ -1,54 +1,40 @@
-## Unixcore utilities
+## Unix core utilities
 
 Most of the commmands below are described in detail in the [HTML manual for the GNU coreutils](https://www.gnu.org/software/coreutils/manual/html_node/index.html)
 
 
-### Navigating the file system
+### Navigating the file system and file manipulation
 
-All of the [commands for navigating and manipulating files and diretories](./navigating-filesystems.md) that we previously discussed apply on Unix based systems.
+All of the [commands for navigating and manipulating files and diretories](./navigating-filesystems.md) that we previously discussed apply. Here are a few additional useful tools:
 
-### Create an example file
+* `ln` -- make links between files.  Typically you'll want to create "symbolic links" (symlinks), which act like "shortcuts" on Windows systems. Links are useful to create references to files located nested deep in directory hierarchies or with long and tedious names. 
+    - Example: recall that the SARS-CoV-2 GFF file we downloaded had a very long name of the form `GCF_009...`.  That would be tedious to type everytime we wanted to refer to the file, so let's create a symlink to it in our home directory (note this is all one line:)
 
-Using VS Code, create a file named "names.txt" in your home directory, with the following contents:
+        ```
+        ln -s genome_annotations/GCF_009858895.2_ASM985889v3_genomic.gff ~/covid.gff
+        ```
 
-```
-# stage names of various musical artists
-Peter
-Paul
-Mary
-George
-Ringo
-John
-Paul
-Jose
-Placido
-Luciano
-Beyonce
-Kelly
-Michelle
-Run
-DMC
-Jay
-Posdnuos
-Trugoy
-Maseo
-Jin
-Suga
-J-Hope
-RM
-Jimin
-V
-Jungkook
-```
+* `touch` -- change the modification time stamp of a file, or if file doesn't exist create an empty file
+    - `touch newfile.txt`
+
+* `df` -- report the amount of space used/available on the file sytem
+    - `df -h`: the `-h` option reports space in "human readable" units (K = kilobyte, M = megabyte, G = gigabyte) instead of raw bytes
+
 
 ### Other commonly used commands
 
-* `less` -- a "pager" program for reading text, either from a file or stdout, one page at a time. Useful when output spans multiple pages.  To advance/go back a page use `<space>/b` and to quit type 'q'
-    - `less file.txt`
+* `less` -- a "pager" program for reading text one page at a time ("less is a better more"!). Useful when output spans multiple pages.  To advance/go back a page use `<space>/b` and to quit type `q`.
+    - `less covid.txt`
     - `ls -l /bin/ | less`  -- notice that that the `ls` command here generates a long list of files. `less` helps us read the output one page at a time.
+   
+* `head` and `tail` -- output the first/last part of a file.  Both default to output 10 lines.
+    - `head covid.gff`
+    - `tail covid.gff`
+    - `head -n 5 covid.gff`: show the first 5 lines of the file
 
-* `cat` -- print lines of a file to stdout 
-  - `cat file.txt`    
+* `cat` -- copies file(s) to stdout 
+  - `cat file.txt`: write file to stdout
+  - `cat file1.txt file2.txt > file1and2.txt`: concatenate two files
 
 * `wc` -- counts bytes, characters, words, or lines
   - `wc -l file.txt`: count the number of lines in `file.txt`

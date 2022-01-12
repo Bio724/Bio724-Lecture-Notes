@@ -20,6 +20,9 @@ NOTE: The following commands also work in Windows Powershell
 * `mv` -- move a file or directory
   * `mv foo.txt baz.txt`
   * `mv foo_dir foo.dir`
+* `cat` -- write the contents of a file to the terminal:
+  * `cat foo.txt`
+* `more` -- a pager program. View the contents of a file, one page at a time. Type `<space>` to advance pages, `q` to quit.
 
 Side note: Why is it common to use names like `foo`, `bar`, and `baz` in examples? See https://en.wikipedia.org/wiki/Foobar
 

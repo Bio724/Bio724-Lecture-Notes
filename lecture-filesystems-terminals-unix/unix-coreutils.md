@@ -2,6 +2,22 @@
 
 Most of the commmands below are described in detail in the [HTML manual for the GNU coreutils](https://www.gnu.org/software/coreutils/manual/html_node/index.html)
 
+### Command-line options
+
+Many Unix programs accept command-line optoins (switches) to control or modify their behavior.  Generally there are two styles: short switches designated with a single letter preceded by a hyphen (e.g. `ls -a`) or  keyword options designated by two hyphens followed by a keyword (e.g. `ls --all`). There are no hard and fast rules about how command-line options are used, but there are some conventions that most programs follow:
+
+* When using multiple single letter options, multiple options can be written together after a single hyphen, e.g. `ls -la` == `ls -l -a`.
+
+* Options can be be configured to accept arguments. 
+  - Sometimes arguments are optional, but sometimes they are required 
+  - In the case of single letter options the argument comes immediately after the switch or can be separated by a space, e.g. `cut -f 3 file.txt` == `cut -f3 file.txt` (cut the third column from each line; see below for info about `cut`)
+  - When using keyword options, arguments can be separated by a space of an equal sign, e.g. `ls --hide="*.txt"` (lists files, hiding everything that matches the given pattern)
+  - Some switches accept multiple arguments, e.g. `cut -f 1,3 file.txt`
+
+* Many programs have a `--help` switch that prints out a brief summary of the standard usage pattern along with a list of the available options. A program's `man` pages are usually the best place to get more detailed explanations of how the options work. 
+
+Futher discussion of command line switches can be found here: http://catb.org/esr/writings/taoup/html/ch10s05.html
+
 
 ### Navigating the file system and file manipulation
 
@@ -67,6 +83,8 @@ All of the [commands for navigating and manipulating files and diretories](./nav
 
 * `uniq` -- report/omit adjacent repeated lines.  The adjacency requirement means you usually need to sort the input first.
   - `echo 1235231443551 | fold -w 1 | sort | uniq`: get unique digits from input. Also try this without sorting first to see the difference.
+
+* `comm` -- compares two sorted files, line by line. By default produces three-column output 
 
 * `cut` -- removes sections (bytes, characters, or fields) from input
   - For this example create a file (`columns.txt`) with the following command (`\t` = TAB character, `\n` = newline character): 

@@ -3,6 +3,8 @@
 * [Understanding your computer's file system](./local-filesystems.md)
 * [Using the terminal](./local-terminal.md)
 * [Navigating file systems from the command line](./navigating-filesystems.md)
+* [Wildcard matching](./globbing.md)
+
 
 # Remote Computing
 
@@ -14,4 +16,7 @@
 
 # Introduction to Unix
 
-
+* [Unix file system](./unix-filesystem.md)
+* [Getting help at the command line](./getting-help-unix.md)
+* [Pipes and redirection](./unix-pipes.md)
+* [Unix core utilities](./unix-coreutils.md)

@@ -7,12 +7,13 @@
 * `scp` -- secure copy.  Command line tool to copy files to or from a remote machine via SSH.
   * Move a local file (`foo.txt`) to your virtual machine: 
     - `scp foo.txt netid@hostname:~`
-  * Move a remote file (`~/data/bar.txt`) to your local machine (`~/bio208/data`):
-    - `scp netid@hostname:~/data/bar.txt ~/bio208/data` (saves `bar.txt` under the local directory `/bio208/data`)
+  * Move a remote file (`~/data/bar.txt`) to your local machine (`~/bio724/data`):
+    - `scp netid@hostname:~/data/bar.txt ~/bio724/data` (saves `bar.txt` under the local directory `~/bio724/data` assuming that directory already exists)
 
 * `wget` -- a command line program for downloading files from the web. You would typically use this to download files from a URL to a remote machine without.
-    * e.g. Download the plain text version of the SARS-CoV-2 reference genome from the course website to your local machine:
-       - `wget https://raw.githubusercontent.com/bio208fs-class/bio208fs-lecture/master/data/covid-ref-unwrapped.txt`  
+    * e.g. Download the GFF formatted genome annotation for the reference budding yeast (Saccharomyces cerevisiae) genome from NCBI:
+      - `wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/146/045/GCF_000146045.2_R64/GCF_000146045.2_R64_genomic.gff.gz`
+
 
 
 ### Using Cyberduck (or another SFTP client)

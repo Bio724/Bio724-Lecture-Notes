@@ -25,4 +25,7 @@
 
 # Example data
 
-  * [yeast_genome_features.txt](https://github.com/Bio724/Bio724-Example-Data/raw/main/yeast_genome_features.txt) -- a tab-delimited file derived from the standard genome annotation GFF file from the Saccharomyces Genome Database.
+  * Yeast genome feature files -- tab-delimited files derived from the standard genome annotation GFF files provide by the Saccharomyces Genome Database.
+
+    * [yeast_genome_features_R40-1-1.txt](https://github.com/Bio724/Bio724-Example-Data/raw/main/yeast_genome_features_R40-1-1.txt) -- Genome release R40.1.1 from July 2004
+    * [yeast_genome_features_R64-3-1.txt](https://github.com/Bio724/Bio724-Example-Data/raw/main/yeast_genome_features_R64-3-1.txt) -- Genome release 64.3.1 from April 2021

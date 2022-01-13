@@ -3,9 +3,9 @@
 
 This illustrates a simple pipeline to compare and analyze genome features using simplified annotation files. Replicate these analyses on your own VM and think about ways you can extend them:
 
-    * [yeast_genome_features_R40-1-1.txt](https://github.com/Bio724/Bio724-Example-Data/raw/main/yeast_genome_features_R40-1-1.txt) -- Genome release R40.1.1 from July 2004
+* [yeast_genome_features_R40-1-1.txt](https://github.com/Bio724/Bio724-Example-Data/raw/main/yeast_genome_features_R40-1-1.txt) -- Genome release R40.1.1 from July 2004
 
-    * [yeast_genome_features_R64-3-1.txt](https://github.com/Bio724/Bio724-Example-Data/raw/main/yeast_genome_features_R64-3-1.txt) -- Genome release 64.3.1 from April 2021
+* [yeast_genome_features_R64-3-1.txt](https://github.com/Bio724/Bio724-Example-Data/raw/main/yeast_genome_features_R64-3-1.txt) -- Genome release 64.3.1 from April 2021
 
 These two files were derived from standard GFF annotation files downloaded from the Saccharomyces Genome Database (SGD).  There are 6 columns in each file:
 

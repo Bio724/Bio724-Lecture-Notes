@@ -18,5 +18,21 @@ The argument `"^(2011|2012)"` is a regular expression (the `-E` flag tells `grep
 
 ### Sorting using `sort`
 
-We're going to combine data files using the 
+Sort the LeafTraits file:
 
+```
+sort -t$'\t' -k 5 LeafTraits-2011-2012.tsv > LeafTraits-2011-2012-sorted.tsv 
+```
+
+Sort the species list
+```
+sort -t$'\t' -k 6 SpeciesList.tsv > SpeciesList-sorted.tsv
+```
+
+### Merging using join
+
+Join the two sorted tables.
+
+```
+join -t$'\t' -1 5 -2 6 LeafTraits-2011-2012-sorted.tsv SpeciesList-sorted.tsv > leaf-and-species-joined.tsv
+```

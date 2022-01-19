@@ -14,6 +14,8 @@ grep -E "^(2011|2012)" LeafTraits.tsv  > LeafTraits-2011-2012.tsv
 
 The argument `"^(2011|2012)"` is a regular expression (the `-E` flag tells `grep` to use it's "extended" regular expression syntax).  Regular expressions are a way of describing patterns in strings.  This particular regular expression means "match at the beginning of a line the strings '2011' or '2012'".  
 
+See (Regular Expression in Grep)[https://linuxize.com/post/regular-expressions-in-grep/] for an overview of the grep RE syntax.
+
 
 
 ### Sorting using `sort`

@@ -44,13 +44,56 @@ In this last example we add one more condition -- we use a regular expression ag
 awk '$2 == "gene" && ($4 - $3 + 1) < 300 && $6 ~ /orf_classification=Dubious/ {print $0 }' yeast_features.txt | wc -l
 ```
 
+
+## Multiple rules and Awk scripts
+
+So far our `pattern {action}` rules have matched focused on single patterns.  However, you can specify multiple matching rules and do different computations depending on which one matches. For example, if we wanted to count genes and mRNAs simultaneously in an annotation file and then print out the counts at the end, we can construct a awk call with three rules:
+
+```bash
+awk '$2 == "gene" {gene_ct += 1} $2 == "mRNA" {mRNA_ct += 1} END {print gene_ct, mRNA_ct}' yeast_features.txt
+```
+
+At this point the command line is getting a little out of control so it would be better to put the rules into a file we can call. In your editor create a file called `count_genes_mRNAs.awk` with the following contents:
+
+```awk
+$2 == "gene" {
+    gene_ct += 1
+} 
+
+$2 == "mRNA" {
+    mRNA_ct += 1
+} 
+
+## called once all lines have been processed
+END {
+    print gene_ct, mRNA_ct
+}
+```
+
+This file works exactly like our command line version, but it has the advantages that it's easier to read and thus easier to debug or modify.  To call this Awk program from the command line we use the `-f` option to specify the script:
+
+```bash
+awk -f count-genes-mRNAs.awk yeast_features.txt
+```
+
+## Variables in Awk
+
+The prior example demonstrated how "variables" are created in Awk. Variables store values. In Awk that are only two variable types, strings and numbers.  
+
+### Numerical variables
+
+In the example above `gene_ct` and `mRNA_ct` are numerical variables. In Awk, when a numerical value is first created (initialized) it's automatically assigned the value zero.   In this example we used these variables in lines that look like `gene_ct += 1`; the `+=` operator is a short-hand way of saying "add the value on the right to the value of the variable on the left" so this statement is equivalent to the slightly wordier `gene_ct = gene_ct + 1`.
+
+### String variables
+
+
 ## Some useful Awk constructs
 
 - `BEGIN {action}` -- do the specified action before reading any input
 
 - `END {action}` -- do the specified action after reading all input
 
-- Record and field counting:
+- Record and field counts:
 
   - `FNR` and `NR` -- `FNR` gives the current record number in the current file (awk can process multiple files simultaneously); `NR` gives the total number of records seen so far. When processing a single file, `FNR` == `NR`
 
@@ -81,7 +124,9 @@ awk '$2 == "gene" && ($4 - $3 + 1) < 300 && $6 ~ /orf_classification=Dubious/ {p
     awk -f ncRNAs.awk yeast_features.txt 
     ```
 
-- `match(field, regex)` -- find the specified regex in the given field. Per the Gawk manual: \"Returns the character position (index) at which that substring begins (one, if it starts at the beginning of string). If no match is found, return zero."
+- `match(field, regex)` -- this is a function that finds the specified regex (regular expression) in the given field. Per the Gawk manual: 
+
+    > "Returns the character position (index) at which that substring begins (one, if it starts at the beginning of string). If no match is found, return zero."
 
     The following example returns all features for which the attribute field indicates the product is uncharacterized:
 

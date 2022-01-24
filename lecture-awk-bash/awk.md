@@ -78,7 +78,7 @@ awk -f count-genes-mRNAs.awk yeast_features.txt
 
 ## Variables in Awk
 
-The prior example demonstrated how "variables" are created in Awk. Variables store values. In Awk that are only two variable types, strings and numbers.  
+The prior example introduced the use of "variables" in Awk. Variables store values; in Awk that are only two variable types, strings and numbers.  
 
 ### Numerical variables
 

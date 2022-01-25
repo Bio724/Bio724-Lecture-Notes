@@ -21,6 +21,7 @@
 * [Pipes and redirection](./unix-pipes.md)
 * [Getting help at the command line](./getting-help-unix.md)
 * [Unix core utilities](./unix-coreutils.md)
+  * [Unexpected sorting results](./unexpected-sorting.md)
 
 
 # Example pipeline

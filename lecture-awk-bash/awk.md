@@ -195,3 +195,35 @@ For a full exposition on Awk's arrays, read the Gawk manual on the [Basics of Ar
 
     {print $1, $NF} # applies to every line
     ```
+
+* Matching and extracting information using regular expressions
+
+  * `match(field, regex)` -- this function find the specified regex in the given field. Per the gawk manual: "Returns the character position (index) at which that substring begins (one, if it starts at the beginning of string). If no match is found, return zero. "
+
+    The following example returns all features in a GFF file for which the attribute field (column 9) includes an ID designation.
+
+    ```bash
+    awk 'match($9, "ID=([^;]+)") {print $0}' yeast.gff
+    ```
+
+
+  * `gawk` provides a more powerful version of `match` where the matches can take an optional array as the third argument. As described in the Gawk manual:
+
+    > If array is present, it is cleared, and then the zeroth element of array is set to the entire portion of string matched by regexp. If regexp contains parentheses, the integer-indexed elements of array are set to contain the portion of string matching the corresponding parenthesized subexpression. 
+
+    Here's an example of using the gawk `match` function to extract the ID attribute for every gene feature and create a new table giving ID, landmark, and start and end coordinates.
+
+    ```awk
+    $3 == "gene" {
+        id = ""
+        if (match($9, "ID=([^;]+);", matchvar))
+            id = matchvar[1]
+        print id, $1, $4, $5
+    }
+    ```
+
+    If we put this in `idgenes.awk` we can call it as:
+
+    ```bash
+    awk -f idgenes.awk yeast.gff
+    ```

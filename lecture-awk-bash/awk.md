@@ -44,7 +44,6 @@ In this last example we add one more condition -- we use a regular expression ag
 awk '$2 == "gene" && ($4 - $3 + 1) < 300 && $6 ~ /orf_classification=Dubious/ {print $0 }' yeast_features.txt | wc -l
 ```
 
-
 ## Multiple rules and Awk scripts
 
 So far our `pattern {action}` rules have matched focused on single patterns.  However, you can specify multiple matching rules and do different computations depending on which one matches. For example, if we wanted to count genes and mRNAs simultaneously in an annotation file and then print out the counts at the end, we can construct a awk call with three rules:
@@ -112,7 +111,7 @@ BEGIN {
 
 Most programming languages have a core set of "data structures" which specify different ways of storing and accessing values. In Awk the core data structure is called an array. It has some superficial similarities to arrays (sometimes called lists) in other languages, but also has some features that are fairly unique to Awk.  
 
-An array can be thought of being made up of a contiguous set of slots or positions where we can store values.  Each slot has an associated label that we call its index (plural indices). In most languages array indices are integers, with the first position indexed by successive integer values (some languages start indexing the 0, others with 1). In Awk, array indices can be either numbers or strings.  This makes arrays in Awk a little like a combination between what other languages might call an array (or list) and a dictionary (hash map). 
+An array can be thought of being made up of a contiguous set of slots or positions where we can store values.  Each slot has an associated label that we call its index (plural indices). In most languages array indices are integers, with the first position indexed by successive integer values (some languages start indexing the 0, others with 1). In Awk, array indices can be either numbers or strings.  This makes arrays in Awk a little like a combination between what other languages might call an array (or list) and a dictionary (hash map).
 
 Here are some illustrations of using arrays in Awk:
 
@@ -161,30 +160,29 @@ Here are some illustrations of using arrays in Awk:
 
   ```bash
   cut -f 2 yeast_features.txt | awk -f uniqct.awk
-  ``` 
+  ```
 
 For a full exposition on Awk's arrays, read the Gawk manual on the [Basics of Arrays](https://www.gnu.org/software/gawk/manual/html_node/Array-Basics.html). Here I illustrate some basic uses of arrays.
 
-
 ## Some useful Awk constructs
 
-- `BEGIN {action}` -- do the specified action before reading any input
+* `BEGIN {action}` -- do the specified action before reading any input
 
-- `END {action}` -- do the specified action after reading all input
+* `END {action}` -- do the specified action after reading all input
 
-- Record and field counts:
+* Record and field counts:
 
-  - `FNR` and `NR` -- `FNR` gives the current record number in the current file (awk can process multiple files simultaneously); `NR` gives the total number of records seen so far. When processing a single file, `FNR` == `NR`
+  * `FNR` and `NR` -- `FNR` gives the current record number in the current file (awk can process multiple files simultaneously); `NR` gives the total number of records seen so far. When processing a single file, `FNR` == `NR`
 
-  - `NF` -- gives the number of fields in the current record(line)
+  * `NF` -- gives the number of fields in the current record(line)
 
     ```bash
     awk -F "\t" `{print "There are", NF, "fields in line", FNR}` yeast_features.txt 
     ```
 
-- Field separators -- both the input field seperator (`FS`) and the output field separator (`OFS`) can be specified in an Awk program. This is usually done in a `BEGIN` rule:
+* Field separators -- both the input field seperator (`FS`) and the output field separator (`OFS`) can be specified in an Awk program. This is usually done in a `BEGIN` rule:
 
-  - `firstlast_csv.awk` -- outputs first and last fields of input file in CSV separated fileds
+  * `firstlast_csv.awk` -- outputs first and last fields of input file in CSV separated fileds
 
     ```awk
     BEGIN {

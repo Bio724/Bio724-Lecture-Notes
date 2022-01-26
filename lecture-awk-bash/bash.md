@@ -1,17 +1,111 @@
 # Bash
 
+## Pipelines
+
+* "pipeline" -- a sequence of one or more commands separated by the pipe operator '|'
+  * e.g.  `cut -f2 yeast_features.txt | sort`
 
 
-## Lists of commands and grouping commands
+## Other  operators
 
-{ cmd1; cmd2; cmd3}
+We've previously seen the pipe (`|`) and redirection (`>`, `<`, `>>`, `<<`) operators. Here are a few other of the most common bash operators
+
+* `cmd1 ; cmd2` -- run commands sequentially; exit status is status of last command
+  * e.g. `echo One Two Three; echo A B C`
+
+* `cmd1 && cmd2` -- run `cmd1` and then run `cmd2` if `cmd1` succeeded (exit status 0)
+  * e.g. `wget http://example.com/file.gz && gunzip file.gz` -- the `gunzip` command never runs if the example `wget` fails
+
+* `cmd1 || cmd2` -- run `cmd1`, if it fails than run `cmd2`
+  * e.g. `cat a_file_name_that_might_not_exist.txt || echo "I couldn't find that file!"`
+
+## Lists
+
+* "list" is a sequence of one or more pipelines separated the `;`, `&&`, and `||` operators.
+
+## Grouping commands
+
+There are two ways to group commands together. In both cases the output of each command is written successively to stdout.
+
+* `( list )` -- runs commands in a subshell process
+
+  * e.g. `(echo One Two Three; echo A B C) | cut -f2 -d " "` -- compare what the output is when you leave out the grouping parentheses
+
+* `{ list; }` -- runs commands in current shell process. Note that the final semi-colon is required.
+
+## Parameters and parameter expansion 
+
+From the [Bash Hacker's Wiki](https://wiki.bash-hackers.org/syntax/pe)
+
+>A parameter is an entity that stores values and is referenced by a name, a number or a special symbol.  
+
+* Parameters referenced by a name are called variables
+  * e.g. `FIRST_NAME="FRED"` set a variable called `FIRST_NAME`
+* Parameters referenced by a number are called positional parameters and reflect the arguments given to a shell (see below)
 
 
-## Parameter expansion and Command substitution
+"Parameter expansion" refers to the procedure of getting the referenced value from a parameter.  The simplest version has the form `${PARAMETER}`
+
+
+```bash
+FIRST_NAME="FRED" 
+MIDDLE_INITIAL="F"
+LAST_NAME="FOO"
+echo "${LAST_NAME}, ${FIRST_NAME} ${MIDDLE_INITIAL}."
+```
+
+
+
+## Command substitution
+
+Command substitution allows the output of a command to replace the command itself. The syntax is:
+
+* `$(command)`
+
+Some examples:
+
+* ```bash
+  echo "Today's date is: $(date +'%b %d, %Y')"; echo "In ISO-8601 format we'd write that as: $(date -I)"
+  ```
+
+* ```bash
+  echo "The largest file in your home directory is named: " $(ls -1 --sort=size ~ | head -1)`
+  ```
+
+
 
 ### Arithmetic expansion
 
+You can do simple **integer arithmetic calculations** in Bash by wrapping an arithmetic expression ins the form `$((expression))`.
+
+Examples:
+```
+A=10;B=12; echo "The sum of $A and $B is $((A+B))"
+```
+
+But compare the output of the two computations involving division. 
+
+```
+A=20;B=5; echo "$A divided by $B is $((A/B))"
+```
+
+```
+A=20;B=30; echo "$A divided by $B is $((A/B))"
+```
+
+What's going on? As emphasized above Bash only does **integer arithmetic**.
+
+```
+A=20;B=30; echo "Integer division of $A divided by $B is $((A/B)) remainder $((A%B))"
+```
+
+
+
 ## Process substitution
+
+> Process substitution is a form of redirection where the input or output of a process (some sequence of commands) appear as a temporary file. -- [Bash Hackers Wiki](https://wiki.bash-hackers.org/syntax/expansion/proc_subst)
+
+I find this most useful when a program takes multiple inputs and I want to create the inputs themselves from simple pipelines or compound commands:
 
 ## Writing shell scripts
 

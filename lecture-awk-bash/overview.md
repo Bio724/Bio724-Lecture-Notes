@@ -5,7 +5,7 @@
 # Awk and Bash Scripting
 
 * [Awk](./awk.md)
-* [Bash](./bash.md)]
+* [Bash](./bash.md)
 
 
 # Example pipeline

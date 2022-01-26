@@ -110,7 +110,60 @@ BEGIN {
 
 ## Arrays in Awk
 
+Most programming languages have a core set of "data structures" which specify different ways of storing and accessing values. In Awk the core data structure is called an array. It has some superficial similarities to arrays (sometimes called lists) in other languages, but also has some features that are fairly unique to Awk.  
 
+An array can be thought of being made up of a contiguous set of slots or positions where we can store values.  Each slot has an associated label that we call its index (plural indices). In most languages array indices are integers, with the first position indexed by successive integer values (some languages start indexing the 0, others with 1). In Awk, array indices can be either numbers or strings.  This makes arrays in Awk a little like a combination between what other languages might call an array (or list) and a dictionary (hash map). 
+
+Here are some illustrations of using arrays in Awk:
+
+* The `split()` function splits a string based on a delimiter and returns the substrings in an array that is indexed by integer position
+
+  ```bash
+  awk '
+  BEGIN {
+    name = "kebab-case-name"
+    split(name, parts, "-")  # parts array is created
+    print "part 1: " parts[1]
+    print "part 2: " parts[2]
+    print "part 3: " parts[3]
+  }'
+  ```
+
+  Typically you'd use a for-loop to iterate over the indices of `parts`
+
+  ```bash
+  awk '
+  BEGIN {
+    name = "kebab-case-name"
+    # split() return the number of substrings it creates
+    n = split(name, parts, "-") 
+
+    # for-loop iterating over integer indices
+    for (i = 1; i <= n; ++i )
+      print "part " i ": " parts[i]
+  }'
+  ```
+
+* `uniqct.awk` -- a program that outputs a table listing the unique set of lines in the input, and the number of times that each line  appears
+
+  ```awk
+  # this rule applies to every line, $0 returns the whole line
+  { counts[$0] += 1 }
+
+  END{
+    # for loop with implicit indices
+    for (idx in counts)   
+      print idx, counts[idx]
+  }
+  ```
+
+  This code might be used like so:
+
+  ```bash
+  cut -f 2 yeast_features.txt | awk -f uniqct.awk
+  ``` 
+
+For a full exposition on Awk's arrays, read the Gawk manual on the [Basics of Arrays](https://www.gnu.org/software/gawk/manual/html_node/Array-Basics.html). Here I illustrate some basic uses of arrays.
 
 
 ## Some useful Awk constructs
@@ -129,48 +182,14 @@ BEGIN {
     awk -F "\t" `{print "There are", NF, "fields in line", FNR}` yeast_features.txt 
     ```
 
-- Arrays -- read the Gawk manual on the [Basics of Arrays](https://www.gnu.org/software/gawk/manual/html_node/Array-Basics.html)
+- Field separators -- both the input field seperator (`FS`) and the output field separator (`OFS`) can be specified in an Awk program. This is usually done in a `BEGIN` rule:
 
-  - e.g. `$3 == "ncRNA_gene" { cts[$1] += 1}` -- here `cts` is an array, indexed by the values in field 1. We might use this as follows:
-
-    ``` awk
-    $3 == "ncRNA_gene" {
-        cts[$1] += 1
-    }
-
-    END {
-        for (seqid in cts) 
-            print seqid, cts[seqid]
-    }
-    ```
-
-    To use this code put it in a source file `ncRNAs.awk` and call the program as:
-
-    ```bash
-    awk -f ncRNAs.awk yeast_features.txt 
-    ```
-
-- `match(field, regex)` -- this is a function that finds the specified regex (regular expression) in the given field. Per the Gawk manual: 
-
-    > "Returns the character position (index) at which that substring begins (one, if it starts at the beginning of string). If no match is found, return zero."
-
-    The following example returns all features for which the attribute field indicates the product is uncharacterized:
-
-    ```bash
-    awk 'match($9, "product=uncharacterized") {print $0}' yeast.gff
-    ```
-
-- `gawk` provides a more powerful version of `match` where the matches can take an optional array as the third argument. As described in the Gawk manual:
-
-    > If array is present, it is cleared, and then the zeroth element of array is set to the entire portion of string matched by regexp. If regexp contains parentheses, the integer-indexed elements of array are set to contain the portion of string matching the corresponding parenthesized subexpression.
-
-    Here's an example of using the gawk `match` function:
+  - `firstlast_csv.awk` -- outputs first and last fields of input file in CSV separated fileds
 
     ```awk
-    $3 == "protein_coding_gene" {
-        id = ""
-        if (match($9, "ID=([^;]+);", matchvar))
-            id = matchvar[1]
-        print id, $1, $4, $5
+    BEGIN {
+      OFS = ","
     }
+
+    {print $1, $NF} # applies to every line
     ```

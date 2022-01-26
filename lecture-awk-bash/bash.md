@@ -105,7 +105,11 @@ A=20;B=30; echo "Integer division of $A divided by $B is $((A/B)) remainder $((A
 
 > Process substitution is a form of redirection where the input or output of a process (some sequence of commands) appear as a temporary file. -- [Bash Hackers Wiki](https://wiki.bash-hackers.org/syntax/expansion/proc_subst)
 
-I find this most useful when a program takes multiple inputs and I want to create the inputs themselves from simple pipelines or compound commands:
+I find this most useful when a program takes multiple inputs and I want to create the inputs themselves from simple pipelines or compound commands. Here's an example, where I use `parallel` to create all possible combinations of chromosomes and features from an annotation file without having to create intermediate files:
+
+```bash
+parallel echo {1} {2} :::: <(cut -f 1 yeast_features.txt | sort | uniq ) :::: <(cut -f 2 yeast_features.txt | sort | uniq)
+```
 
 ## Writing shell scripts
 

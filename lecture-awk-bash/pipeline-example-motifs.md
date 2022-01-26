@@ -20,6 +20,8 @@ Starting data:
 
 * STE12 Sequence Motif -- via [The Yeast Transcription Factor Specificity Compendium](http://yetfasco.ccbr.utoronto.ca/) ![STE12 binding site motif](./figures/STE12-motif.png)
 
+* [STE12 Targets](https://raw.githubusercontent.com/Bio724/Bio724-Example-Data/main/STE12_targets.tsv)
+
 ## Overview of Approach
 
 * Filter GFF file for genes features corresponding to our targets of interest 

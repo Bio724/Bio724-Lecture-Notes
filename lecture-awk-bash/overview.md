@@ -15,3 +15,5 @@
 * [Bash](./bash.md)
 
 # Example pipeline
+
+* [Example: Counting binding site motifs in promoters](./pipeline-example-motifs.md)

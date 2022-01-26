@@ -170,6 +170,10 @@ For a full exposition on Awk's arrays, read the Gawk manual on the [Basics of Ar
 
 * `END {action}` -- do the specified action after reading all input
 
+* `next` -- the next statement causes Awk to stop processing the current record (line) and move onto the next record.
+
+* `exit` -- the exit statement immediately stops execution of any rules and jumps to the `END` rule. Useful for terminating processing based on a condition.
+
 * Record and field counts:
 
   * `FNR` and `NR` -- `FNR` gives the current record number in the current file (awk can process multiple files simultaneously); `NR` gives the total number of records seen so far. When processing a single file, `FNR` == `NR`

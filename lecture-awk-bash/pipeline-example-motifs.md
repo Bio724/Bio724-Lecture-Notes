@@ -33,3 +33,9 @@ Starting data:
 * Wrap our pipeline into a re-usable Bash script so it can be easily applied to other sets of genes and TF motifs
 
 * How could we do this analysis efficiently for many sets of genes? For example, clusters of co-regulated genes identified in a transcriptome analysis 
+
+
+
+## Other tools for motif search
+
+A more in-depth  analysis aiming to discover novel motifs, or incorporate more sensitive motif detection, could incorporate the motif search and identification tools provided by [MEME Suite](https://meme-suite.org/meme/index.html). Meme can be installed via Conda (`meme search conda` for more info).

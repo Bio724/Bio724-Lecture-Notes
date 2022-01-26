@@ -5,3 +5,5 @@
 
 2. [Installing software tools and data wrangling in Unix](lecture-data-wrangling-unix/overview.md)
 
+3. [Awk and Bash Scripting](lecture-awk-bash/overview.md)
+

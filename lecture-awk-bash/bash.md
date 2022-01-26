@@ -268,8 +268,9 @@ If the `map_and_call.sh` file is in my home directory and I'm working in the dir
 
 ## Other resources
 
-The above is just a quick intro to bash scripting. Some other useful resources include:
+The above is a short intro to bash and bash scripting. Some other useful resources include:
 
-* https://linuxconfig.org/bash-scripting-tutorial-for-beginners -- an in-depth bash tutorial
+* https://linuxconfig.org/bash-scripting-tutorial-for-beginners -- provides a good overview of bash
 * https://devhints.io/bash -- a nice bash cheatsheet
+* https://www.shellscript.sh/ -- an in-depth tutorial on bash scripting
 * https://www.gnu.org/software/bash/manual/ -- the official  bash manual

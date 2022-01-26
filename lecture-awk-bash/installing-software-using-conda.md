@@ -54,6 +54,7 @@ To install a package, such as `clustalo` (Clustal Omega), you use the subcommand
 conda install clustalo
 ```
 
+
 ## Creating a conda environment
 
 By default, when you login to your terminal after installing Conda, you will be working in the "base" conda environment.  For the purposes of this class we'll install most of our tools in this base environment, but if you're testing out software or setting up complex analysis pipelines it's often useful to create separate environments to work in. Here's the basic steps on how to do that:

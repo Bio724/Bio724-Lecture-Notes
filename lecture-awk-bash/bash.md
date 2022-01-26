@@ -4,6 +4,8 @@
 
 ## Lists of commands and grouping commands
 
+{ cmd1; cmd2; cmd3}
+
 
 ## Parameter expansion and Command substitution
 

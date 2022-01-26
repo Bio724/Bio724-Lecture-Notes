@@ -86,6 +86,32 @@ In the example above `gene_ct` and `mRNA_ct` are numerical variables. In Awk, wh
 
 ### String variables
 
+String variables are created by wrapping characters in double quotes.
+
+```awk
+awk 'BEGIN {a = "Hello"; b = "World"; print a b}'
+```
+
+You can get the length of a string using the `length()` function:
+
+```awk
+awk 'BEGIN {a = "Hello"; print "The length of " a " is " length(a)}'
+```
+
+The GNU Awk implementation (`gawk`) provides a wide variety of [string functions](https://www.gnu.org/software/gawk/manual/gawk.html#String-Functions). Some of the most useful include: `substr()`, `split()`, and `gsub()`/`sub()` . Here's an example using `substr()`:
+
+```awk
+awk '
+BEGIN {
+  s = "Jabberwocky"
+  print substr(s, 4, 7) # arguments are string, start, length
+}'
+```
+
+## Arrays in Awk
+
+
+
 
 ## Some useful Awk constructs
 

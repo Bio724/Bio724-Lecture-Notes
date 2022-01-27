@@ -14,11 +14,13 @@ Starting data:
 
 ## Data
 
-* [stripped_yeast_R64-3-1.gff](https://raw.githubusercontent.com/Bio724/Bio724-Example-Data/main/stripped_yeast_R64-3-1.gff) -- A GFF file for Saccharomyces cerevisiae Genome release 64.3.1, stripped of any metadata and comments.
+* [RefSeq GFF file](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/146/045/GCF_000146045.2_R64/GCF_000146045.2_R64_genomic.gff.gz) -- A GFF file for Saccharomyces cerevisiae Genome release 64.3.1.
 
-* [S288C_reference_sequence_R64-3-1.fsa.gz](https://raw.githubusercontent.com/Bio724/Bio724-Example-Data/main/S288C_reference_sequence_R64-3-1.fsa.gz) -- gzipd FASTA file with DNA sequence of the S. cerevisiae genome.
+* [RefSeq FASTA file](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/146/045/GCF_000146045.2_R64/GCF_000146045.2_R64_genomic.fna.gz) -- gzipd FASTA file with DNA sequence of the S. cerevisiae genome.
 
 * STE12 Sequence Motif -- via [The Yeast Transcription Factor Specificity Compendium](http://yetfasco.ccbr.utoronto.ca/) ![STE12 binding site motif](./figures/STE12-motif.png)
+
+* [STE12 Targets](https://raw.githubusercontent.com/Bio724/Bio724-Example-Data/main/STE12_targets.tsv)
 
 ## Overview of Approach
 

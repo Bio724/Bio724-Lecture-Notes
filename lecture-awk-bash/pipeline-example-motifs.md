@@ -178,7 +178,7 @@ paste target-systnames.txt <(seqkit seq -n target-promoters.fna) <(seqkit seq -s
 
 Explanation:
 
-* `<(...)` = treat the outputs of the commands in the parenthes as if they were files 
+* `<(...)` = treat the outputs of the commands in the parenthes as if they were files via [process substitution](https://github.com/Bio724/Bio724-Lecture-Notes/blob/main/lecture-awk-bash/bash.md#process-substitution)
 * `seqkit seq -n` = only return  the names of each sequence
 * `seqkit seq -s -w 0` = only return the sequences themselves and unwrap the lines (`-w 0`)
 
@@ -189,25 +189,25 @@ Now we're ready to search for binding site motifs in our promoter sequences. We'
 Below I show searching the first promoter sequence in the table with a regular expression that allows some flexibility of the nucleotides in the first, second, and last position of the motif:
 
 ```bash
-head -1 promoter-table.tsv | grep -i '[TA][GA]AAAC[AGT]'
+head -n 1 promoter-table.tsv | grep -i '[TA][GA]AAAC[AGT]'
 ```
 
 Explanation:
 
-* `head -1` = extract the first line from the file
+* `head -n 1` = extract the first line from the file
 * `grep -i` = ignore case
 * `[TA]` etc = match one of these characters
 
 If your terminal is setup to highlight matches returned by `grep` you'll see the matches highlighted in the output. If not you'll just see the line itself indicating that there was at least one match. To get a list of the specific matches we can modify the command line as follows (addition of `-o` flag to grep):
 
 ```bash
-head -1 promoter-table.tsv | grep -i -o '[TA][GA]AAAC[AGT]'
+head -n 1 promoter-table.tsv | grep -i -o '[TA][GA]AAAC[AGT]'
 ```
 
 Finally to count the hits we could do:
 
 ```bash
-head -1 promoter-table.tsv | grep -i -o '[TA][GA]AAAC[AGT]' | wc -l
+head -n 1 promoter-table.tsv | grep -i -o '[TA][GA]AAAC[AGT]' | wc -l
 ```
 
 ### Counting the motif hits in all the target sequences

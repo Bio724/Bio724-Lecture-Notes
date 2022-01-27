@@ -236,8 +236,13 @@ Explanation:
 Since this table is meant to be the final output of our analysis, let's add an appropriate header and save it to a file:
 
 ```bash
-(echo -e "systematic_name\tmotif_count"; parallel --colsep='\t' 'echo -e {1} "\t" $(grep -i -o "[TA][GA]AAAC[AGT]" <<< {3} | wc -l)' :::: promoter-table.tsv) > motif_hits.tsv
+(echo -e "systematic_name\tmotif_count"; 
+parallel --colsep='\t' 'echo -e {1} "\t" $(grep -i -o "[TA][GA]AAAC[AGT]" <<< {3} | wc -l)' :::: promoter-table.tsv
+) > motif_hits.tsv
 ```
+
+Note: I'm taking advantage of the line breaking rules associated with [command grouping in bash](https://github.com/Bio724/Bio724-Lecture-Notes/blob/main/lecture-awk-bash/bash.md#grouping-commands) to make this visually a little easier to digest. You could type this all on a single line with equivalent results.
+
 
 Here's what the first few lines of `motif_hits.tsv` look like:
 

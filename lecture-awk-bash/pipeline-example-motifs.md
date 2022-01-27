@@ -163,7 +163,7 @@ gatgagatgagatgaaattttttctgtaactgaaaaatttcgGAACGTCAATAATGATCG
 ...<output truncated>...
 ```
 
-**Sidenote**: Wondering about GFF vs GTF files? See [this explanation](http://genome.ucsc.edu/FAQ/FAQformat.html#format4) at the UCSC genome browswer website. Essentially GTF was an extension of an older "GFF" format called GFF2; our "GFF" files are "GFF3" files which are largely backwards compatible with the older GFF2/GTF format.
+**Sidenote**: Wondering about GFF vs GTF files? See [this explanation](http://genome.ucsc.edu/FAQ/FAQformat.html#format4) at the UCSC genome browswer website. Essentially GTF is an extension of an older "GFF" format called GFF2; our "GFF" files are "GFF3" files which are largely backwards compatible with the older GFF2/GTF format.
 
 ### Turning FASTA data into a table
 

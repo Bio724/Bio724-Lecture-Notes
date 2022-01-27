@@ -99,7 +99,7 @@ If you look at the `STE12-targets.tsv` file you'll see that is a tab-separated f
 awk -F '\t' '$1 !~ /^!|^$/ {print $4}' STE12_targets.tsv | tail -n +2 | sort > target-systnames.txt
 ```
 
-A little explanation:
+Explanation:
 
 * `'$1 !~ ` -- the `!~` operator evaluates to true  if the regular expression the follows **does not match**.
 * `/^!|^$/` -- this is the regular expression; it has two parts separated by the or `|` operator. `^!` = starts with an exclamation mark; `^$` = empty line (`^` = starts, `$` ends; so with nothing separating them it just means a line with nothing in it)
@@ -145,7 +145,7 @@ Explanation:
 * `-u 500` = upstream 500bp
 * `--gtf targets.gff` = the GFF (GTF) file that specifies the feature regions we want
 
-The output of the command will look like this:
+The output of this step looks like this:
 
 ```text
 >NC_001135.5_71803-73341:+_usf:500 
@@ -175,7 +175,6 @@ We can accomplish this in one command line with clever application of `paste` an
 paste target-systnames.txt <(seqkit seq -n target-promoters.fna) <(seqkit seq -s -w 0 target-promoters.fna) > promoter-table.tsv
 ```
 
-Booyah!
 
 Explanation:
 
@@ -251,6 +250,7 @@ YDR365W-B        0
 ...<output truncated>...
 ```
 
+Booyah!
 
 ## Other tools for motif search
 

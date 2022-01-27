@@ -213,7 +213,7 @@ head -1 promoter-table.tsv | grep -i -o '[TA][GA]AAAC[AGT]' | wc -l
 
 ### Counting the motif hits in all the target sequences
 
-Having solved the problem of counting motif hits in the promoter of one target gene, let's see how to do so for multiple targets. We will iterate over the lines of `promoter-table.csv`, doing a regex and count for each sequence line. For each line line we'll output the systematic name for the target gene as well as the count of the regex hits. This seems like a job for `parallel`. We'll combine `parallel` with a few bash tricks to do this succinctly.
+Having solved the problem of counting motif hits in the promoter of one target gene, let's see how to do so for multiple targets. We will iterate over the lines of `promoter-table.csv`, doing a regex and count for each sequence line. For each line we'll output the systematic name for the target gene as well as the count of the regex hits. This seems like a job for `parallel`. We'll combine `parallel` with a few bash tricks to do this succinctly.
 
 
 ```bash

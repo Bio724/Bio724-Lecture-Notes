@@ -13,6 +13,7 @@
 * Working with remote files
     * [Moving files to/from your VM](./remote-files.md)
     * [Configuring VS Code for Remote Development](./remote-development-vscode.md)
+    * [VS Code Tips](./vscode-tips.md)
 
 # Introduction to Unix
 
@@ -22,6 +23,7 @@
 * [Getting help at the command line](./getting-help-unix.md)
 * [Unix core utilities](./unix-coreutils.md)
   * [Unexpected sorting results](./unexpected-sorting.md)
+* [Unix tips](./unix-tips.md)
 
 
 # Example pipeline

@@ -277,6 +277,12 @@ BEGIN {
 }
 ```
 
+We run this program as:
+
+```bash
+awk -f countmotif.awk promoter-table.tsv
+```
+
 Explanation
 
 * Awk has no dedicated function for counting regexp matches, but the `patsplit(string, array, pattern)` will split a string based on a specified regexp pattern, and returns the number of times the pattern matched. The matches themselves end up in the specified array, which we gave the name `matches`.

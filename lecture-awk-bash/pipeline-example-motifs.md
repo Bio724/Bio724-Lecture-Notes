@@ -221,7 +221,7 @@ parallel --colsep='\t' 'echo -e {1} "\t" $(grep -i -o "[TA][GA]AAAC[AGT]" <<< {3
 
 Explanation:
 
-* `parallel --colsep='\t' '...' ::: promoter_table.tsv` = use parallel to execute the commands represented by the ellipsis where each execution of the commands will be populated by inputs found in the lines of the input file (`promoter_table.tsv`). `--colsep='\t'` species how fields within each line are parsed.
+* `parallel --colsep='\t' '...' ::: promoter_table.tsv` = use parallel to execute the commands represented by the ellipsis where each execution of the commands will be populated by inputs found in the lines of the input file (`promoter_table.tsv`). `--colsep='\t'` specifies how fields within each line are parsed.
 
 * `grep -i -o "[TA][GA]AAAC[AGT]" <<< {3}` = take the third field (the sequence itself) of each input line and send it to the `stdin` stream to be processed by `grep`. The `<<<` operator is called a ["here string"](https://www.gnu.org/software/bash/manual/html_node/Redirections.html#Here-Strings) (see also the related concept of ["here docs"](https://www.gnu.org/software/bash/manual/html_node/Redirections.html#Here-Documents)) and is a convenient way to inject strings into the `stdin` stream. 
 
@@ -256,6 +256,34 @@ YDR365W-B        0
 ```
 
 Booyah!
+
+### An alternate approach to counting motifs using Awk
+
+Rather than using a combination of `grep` and `parallel` to build our table of counts, we could do an equivalent computation in Awk.
+
+`countmotif.awk`:
+```awk
+BEGIN {
+  IGNORECASE=1      # ignore case in regexp
+  FS = "\t"         # tab-delimited input
+  OFS = "\t"        # tab-delimited output
+  print "systematic_name", "motif_count"  
+}
+
+# For every line do this
+{
+  count = patsplit($3, matches, /[TA][GA]AAAC[AGT]/)
+  print $1, count
+}
+```
+
+Explanation
+
+* Awk has no dedicated function for counting regexp matches, but the `patsplit(string, array, pattern)` will split a string based on a specified regexp pattern, and returns the number of times the pattern matched. The matches themselves end up in the specified array, which we gave the name `matches`.
+
+
+
+
 
 ## Other tools for motif search
 

@@ -288,9 +288,6 @@ Explanation
 * Awk has no dedicated function for counting regexp matches, but the `patsplit(string, array, pattern)` function will split a string based on a specified regexp pattern, and returns the number of times the pattern matched. The matches themselves end up in the specified array, which we gave the name `matches`.
 
 
-
-
-
 ## Other tools for motif search
 
 A more in-depth  analysis aiming to discover novel motifs, or incorporate more sensitive motif detection, could incorporate the motif search and identification tools provided by [MEME Suite](https://meme-suite.org/meme/index.html). Meme can be installed via Conda (`meme search conda` for more info).

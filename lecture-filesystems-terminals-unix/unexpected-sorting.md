@@ -96,4 +96,6 @@ We have two options to fix this:
     bob,1.0,10,fred
     ```    
 
-Of these two options I think the first (using `-g`) is generally preferable and more portable (even though slower) as it doesn't rely on the user to explicitly set an environment variable.
+Of these two options I think the first (using `-g`) is generally preferable and more portable (even though slower) as it doesn't rely on the user to explicitly set an environment variable. 
+
+However, localization settings are useful to know about, especially if you're working in a non-English speaking context.  This response on on StackExchange to the question ["What does "LC_ALL=C" do?](https://unix.stackexchange.com/a/87763) is a nice explanation.

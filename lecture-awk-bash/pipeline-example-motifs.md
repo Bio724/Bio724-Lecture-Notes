@@ -66,6 +66,12 @@ ln -s GCF_000146045.2_R64_genomic.fna yeast.fna
 awk -F'\t' '$3 == "gene" {print}' yeast.gff > genes.gff
 ```
 
+### A note on sorts and joins
+
+As [mentioned previously](../lecture-filesystems-terminals-unix/unexpected-sorting.md), locale settings in your OS can effect sorting (e.g. the sorting rules for simple ASCII encoding are different than for UTF-8). This is especially true when combining `sort` and `join`.  For this reason, the [GNU documentation for join](https://www.gnu.org/software/coreutils/manual/html_node/Sorting-files-for-join.html) recommends "The sort and join commands should use consistent locales and options if the output of sort is fed to join". Below I've added the invocation `LC_ALL=C` to the beginning every line involving sorting or joining to insure this.  Another option would be to invoke `export LC=ALL` in your bash session or, to make this the default every time you login, by adding `export LC=ALL` to your `.bashrc` file.
+
+
+
 ### Create an "augmented" GFF file that includes Systematic Names as a column
 
 We'll create an Awk script that uses the [`match(field, regex, array)`](https://www.gnu.org/software/gawk/manual/html_node/String-Functions.html#index-match_0028_0029-function) function to identify `ID` attributes in the 9th field of the GFF file, and extract the corresponding systematic names for each gene.
@@ -88,7 +94,7 @@ $3 == "gene" {
 We then apply this to our genes file and sort the output on the first column (systematic names):
 
 ```bash
-awk -f idmatcher.awk genes.gff | sort -k 1 -t$'\t' > augmented-genes.gff
+LC_ALL=C awk -f idmatcher.awk genes.gff | sort -k 1 -t$'\t' > augmented-genes.gff
 ```
 
 ### Reduce the STE12 targets file to systematic names
@@ -96,7 +102,7 @@ awk -f idmatcher.awk genes.gff | sort -k 1 -t$'\t' > augmented-genes.gff
 If you look at the `STE12-targets.tsv` file you'll see that is a tab-separated file that also include some metadata rows (prefixed by `!`) as well as a blank row and a header row.  We'll need to remove this extraneous information before extracting the systematic names of the targets from the fourth field of each row.  In lecture I did this in a quick-and-dirty way by using awk to ignore any rows that didn't have at least four fields, but here I'll demonstrate a more thorough approach in awk to explicitly remove these extraneous rows:
 
 ```bash
-awk -F '\t' '$1 !~ /^!|^$/ {print $4}' STE12_targets.tsv | tail -n +2 | sort > target-systnames.txt
+LC_ALL=C awk -F '\t' '$1 !~ /^!|^$/ {print $4}' STE12_targets.tsv | tail -n +2 | sort > target-systnames.txt
 ```
 
 Explanation:
@@ -111,7 +117,7 @@ Explanation:
 Now we want to filter the GFF records to only include our target genes of interest.  The prior data cleaning and filtering steps were all in the service of this step:
 
 ```bash
-join -j 1 -t $'\t' augmented-genes.gff target-systnames.txt > augmented-targets.gff
+LC_ALL=C join -j 1 -t $'\t' augmented-genes.gff target-systnames.txt > augmented-targets.gff
 ```
 Since the field number we're joining on is the same for both files (field 1) could use the `-j` option here to specify this simultaneously for both files.
 

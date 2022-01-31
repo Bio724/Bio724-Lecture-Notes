@@ -295,7 +295,14 @@ Explanation
 
 * Awk has no dedicated function for counting regexp matches, but the `patsplit(string, array, pattern)` function will split a string based on a specified regexp pattern, and returns the number of times the pattern matched. The matches themselves end up in the specified array, which we gave the name `matches`.
 
+## Room for improvement
+
+There are a number of the things we didn't consider but might be good to add to make our pipeline more useful:
+
+* Searching the reverse complement of each promoter sequence (or the motif itself)
+* Returning both the number of hits and what the hits were (and possibly their location as well)
+
 
 ## Other tools for motif search
 
-A more in-depth  analysis aiming to discover novel motifs, or incorporate more sensitive motif detection, could incorporate the motif search and identification tools provided by [MEME Suite](https://meme-suite.org/meme/index.html). Meme can be installed via Conda (`meme search conda` for more info).
+A more in-depth  analysis aiming to discover novel motifs, or incorporate more sensitive motif detection, could incorporate the motif search and identification tools provided by [MEME Suite](https://meme-suite.org/meme/index.html). Meme can be installed via Conda (`conda search meme` for more info).

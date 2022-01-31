@@ -68,7 +68,9 @@ awk -F'\t' '$3 == "gene" {print}' yeast.gff > genes.gff
 
 ### A note on sorts and joins
 
-As [mentioned previously](../lecture-filesystems-terminals-unix/unexpected-sorting.md), locale settings in your OS can effect sorting (e.g. the sorting rules for simple ASCII encoding are different than for UTF-8). This is especially true when combining `sort` and `join`.  For this reason, the [GNU documentation for join](https://www.gnu.org/software/coreutils/manual/html_node/Sorting-files-for-join.html) recommends "The sort and join commands should use consistent locales and options if the output of sort is fed to join". Below I've added the invocation `LC_ALL=C` to the beginning every line involving sorting or joining to insure this.  Another option would be to invoke `export LC=ALL` in your bash session or, to make this the default every time you login, by adding `export LC=ALL` to your `.bashrc` file.
+As [mentioned previously](../lecture-filesystems-terminals-unix/unexpected-sorting.md), locale settings in your OS can effect sorting (e.g. the sorting rules for simple ASCII encoding are different than for UTF-8). This is especially true when combining `sort` and `join`.  For this reason, the [GNU documentation for join](https://www.gnu.org/software/coreutils/manual/html_node/Sorting-files-for-join.html) recommends: "The sort and join commands should use consistent locales and options if the output of sort is fed to join". 
+
+Below I've added the invocation `LC_ALL=C` to the beginning every line involving sorting or joining to ensure this.  Another option would be to invoke `export LC=ALL` in your bash session or, to make this the default by adding `export LC=ALL` to your `.bashrc` file.
 
 
 

@@ -96,7 +96,7 @@ $3 == "gene" {
 We then apply this to our genes file and sort the output on the first column (systematic names):
 
 ```bash
-LC_ALL=C awk -f idmatcher.awk genes.gff | sort -k 1 -t$'\t' > augmented-genes.gff
+LC_ALL=C; awk -f idmatcher.awk genes.gff | sort -k 1 -t$'\t' > augmented-genes.gff
 ```
 
 ### Reduce the STE12 targets file to systematic names
@@ -104,7 +104,7 @@ LC_ALL=C awk -f idmatcher.awk genes.gff | sort -k 1 -t$'\t' > augmented-genes.gf
 If you look at the `STE12-targets.tsv` file you'll see that is a tab-separated file that also include some metadata rows (prefixed by `!`) as well as a blank row and a header row.  We'll need to remove this extraneous information before extracting the systematic names of the targets from the fourth field of each row.  In lecture I did this in a quick-and-dirty way by using awk to ignore any rows that didn't have at least four fields, but here I'll demonstrate a more thorough approach in awk to explicitly remove these extraneous rows:
 
 ```bash
-LC_ALL=C awk -F '\t' '$1 !~ /^!|^$/ {print $4}' STE12_targets.tsv | tail -n +2 | sort > target-systnames.txt
+LC_ALL=C; awk -F '\t' '$1 !~ /^!|^$/ {print $4}' STE12_targets.tsv | tail -n +2 | sort > target-systnames.txt
 ```
 
 Explanation:
@@ -119,7 +119,7 @@ Explanation:
 Now we want to filter the GFF records to only include our target genes of interest.  The prior data cleaning and filtering steps were all in the service of this step:
 
 ```bash
-LC_ALL=C join -j 1 -t $'\t' augmented-genes.gff target-systnames.txt > augmented-targets.gff
+LC_ALL=C; join -j 1 -t $'\t' augmented-genes.gff target-systnames.txt > augmented-targets.gff
 ```
 Since the field number we're joining on is the same for both files (field 1) could use the `-j` option here to specify this simultaneously for both files.
 

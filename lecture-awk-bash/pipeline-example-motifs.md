@@ -144,19 +144,14 @@ cut -f 1 --complement augmented-targets.gff > targets.gff
 Our first step use of `seqkit` is to extract the sequences from our whole genome FASTA file that correspond to the promoters of our target genes of interest. We'll use the `subseq` command to do this (type `seqkit subseq -h` to get a quick summary of available flags ).  `seqkit subseq` will accept a file of GFF info as a way of specifying what we want to extract, and it also has built in flags for extract flanking sequence around a specified feature.  Here we'll demonstrate how to extract the 500bp upstream (5') of each of our target genes:
 
 ```bash
-# non-deterministic version, order of sequences returned
-# does not necessarily match order of features provided
-# I've filed an issue w/the seqkit develoepr to see if this 
-# is expected behavior (I certainly didn't expect it)
-# Leaving here for now until I can get to the root of the
-# behavior
+parallel -k "seqkit subseq --quiet -w0 -f -u 500 --gtf <(echo {}) yeast.fna" :::: targets.gff > target-promoters.fna
+
+# Previous non-deterministic version below -- order of sequences returned does
+# not necessarily match order of features provided. I've filed an issue w/the
+# seqkit developer to see if this is expected behavior. Leaving here for now 
+# until I can get to the root of the behavior
 # seqkit subseq -f -u 500 --gtf targets.gff yeast.fna > target-promoters.fna
 ```
-
-```bash
-parallel -k "seqkit subseq --quiet -w0 -f -u 500 --gtf <(echo {}) yeast.fna" :::: targets.gff > target-promoters.fna
-```
-
 
 Explanation:
 

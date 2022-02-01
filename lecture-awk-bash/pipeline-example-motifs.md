@@ -144,8 +144,19 @@ cut -f 1 --complement augmented-targets.gff > targets.gff
 Our first step use of `seqkit` is to extract the sequences from our whole genome FASTA file that correspond to the promoters of our target genes of interest. We'll use the `subseq` command to do this (type `seqkit subseq -h` to get a quick summary of available flags ).  `seqkit subseq` will accept a file of GFF info as a way of specifying what we want to extract, and it also has built in flags for extract flanking sequence around a specified feature.  Here we'll demonstrate how to extract the 500bp upstream (5') of each of our target genes:
 
 ```bash
-seqkit subseq -f -u 500 --gtf targets.gff yeast.fna > target-promoters.fna
+# non-deterministic version, order of sequences returned
+# does not necessarily match order of features provided
+# I've filed an issue w/the seqkit develoepr to see if this 
+# is expected behavior (I certainly didn't expect it)
+# Leaving here for now until I can get to the root of the
+# behavior
+# seqkit subseq -f -u 500 --gtf targets.gff yeast.fna > target-promoters.fna
 ```
+
+```bash
+parallel -k "seqkit subseq --quiet -w0 -f -u 500 --gtf <(echo {}) yeast.fna" :::: targets.gff > target-promoters.fna
+```
+
 
 Explanation:
 
@@ -153,25 +164,36 @@ Explanation:
 * `-u 500` = upstream 500bp
 * `--gtf targets.gff` = the GFF (GTF) file that specifies the feature regions we want
 
+---
+
+**Side note**: I wrapped this call to seqkit in a `parallel` iteration because during hours one of the participants noticed their output was returned in a different order than mine. By calling `seqkit subseq` line-by-line with the each GFF record as input (and using the `-k` flag) I'm insuring that the output order of the FASTA subsequences matches the input order of the desired GFF files.  This is important given that we're pasting columns together below.
+
+---
+
+
 The output of this step looks like this:
 
 ```text
->NC_001135.5_71803-73341:+_usf:500 
-AatccttcaatttttctggCAACTTTTCTCAACAGAACAATAACGGCAACCAGAACCGCT
-ACTGAACGATGATTCAGTTCGCCTTCTATCCTTTGTTTACGtatttgtttatatatataa
-ctttatttttttttattaattgGGCTGCAAGACAATTTTGTTGTCAGTGATGCCTCAATC
-CTTCTTTTGCTTCCATATTTACCATGTGGACCCTTTCAAAACAGAGTTGTATCTCTGCAG
-GATGCCCTTTTTGACGTATTGAATGGCATAATTGCACTGTCACTTTTCGCGCTGTCTCAT
-TTTGGTGCGATGATGAAACAAACATGAAACGTCTGTaatttgaaacaaataaCGTAATTC
-TCGGGATTGGTTTTATTTAAATGACAATGTAAGAGTGGCTTTGTAAGGTATGTGTTGCTC
-ttaaaatatttggatACGACAtcctttatcttttttcctttaagAGCAGGATATAAGCCA
-TCAAGTTTctgaaaatcaaa
->NC_001136.10_1206997-1212265:+_usf:500 
-gatgagatgagatgaaattttttctgtaactgaaaaatttcgGAACGTCAATAATGATCG
+>NC_001133.9_160597-164187:-_usf:500 
+aaatcgaaaacagcCAGGGCTCACAATGTATCCACATCTAATAACTCTCCCAGCACGGAC
+AACGATTCcatcagtaaatcaactactgaaccgattcaattgaacaataagcaCGACCTT
+CATCTTAGGCCAGAAACTTACTGAATCTACAGTAAATCATACTaatcattctgatgatga
+actccctggacacctccttctcgattcaggagcatcacgaacccttataagatctgctca
+tcacatacactcagcatcatctaatcctgacataaacgtagttgatgctcaaaaaagaaa
+tataccaattaacgctattggtgacctacaatttcacttccaggacaacaccaaaacatc
+aataaaggtattgcacactcctaacatagcctatgacttactcagtttgaatgaattggc
+tgcagtagatatcacagcatgctttaccaaaaacgtcTTAGAACGGTCTGACGGCACTGT
+ACTTGCACCTATCGTAAAat
+>NC_001134.8_372103-372735:-_usf:500 
+CAATATTCCCAAAAAGAGCATCAGACGATCTGGTTATGGTTTTTCTTGACTATAACCTTA
 ...<output truncated>...
 ```
 
-**Sidenote**: Wondering about GFF vs GTF files? See [this explanation](http://genome.ucsc.edu/FAQ/FAQformat.html#format4) at the UCSC genome browswer website. Essentially GTF is an extension of an older "GFF" format called GFF2; our "GFF" files are "GFF3" files which are largely backwards compatible with the older GFF2/GTF format.
+---
+
+**Side note**: Wondering about GFF vs GTF files? See [this explanation](http://genome.ucsc.edu/FAQ/FAQformat.html#format4) at the UCSC genome browswer website. Essentially GTF is an extension of an older "GFF" format called GFF2; our "GFF" files are "GFF3" files which are largely backwards compatible with the older GFF2/GTF format.
+
+---
 
 ### Turning FASTA data into a table
 
@@ -258,8 +280,8 @@ Here's what the first few lines of `motif_hits.tsv` look like:
 systematic_name motif_count
 YAR009C          2
 YBR067C          0
-YCL027W          2
-YDR365W-B        0
+YCL027W          3
+YDR365W-B        1
 ...<output truncated>...
 ```
 

@@ -161,7 +161,7 @@ Explanation:
 
 ---
 
-**Side note**: I wrapped this call to seqkit in a `parallel` iteration because during hours one of the participants noticed their output was returned in a different order than mine. By calling `seqkit subseq` line-by-line with the each GFF record as input (and using the `-k` flag) I'm insuring that the output order of the FASTA subsequences matches the input order of the desired GFF files.  This is important given that we're pasting columns together below.
+**Side note**: I wrapped this call to seqkit in a `parallel` iteration because during office hours one of the participants noticed their output was returned in a different order than mine. By calling `seqkit subseq` line-by-line with the each GFF record as input (and using the `-k` flag) I'm insuring that the output order of the FASTA subsequences matches the input order of the desired GFF records.  This is critical given that we're pasting columns together below.
 
 ---
 

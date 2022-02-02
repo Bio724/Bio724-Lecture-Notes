@@ -78,7 +78,7 @@ By default, when you login to your terminal after installing Conda, you will be 
     conda install bwa
     ```
 
-1. To leave your current conda environemnt
+1. To leave your current conda environment
 
     ```bashs
     conda deactivate

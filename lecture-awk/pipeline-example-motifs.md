@@ -3,7 +3,7 @@
 
 ## Goal
 
-Analyze promoter regions of genes that are hypothesized to be targets of a transcription factor for the occurence of a binding site motif.
+Analyze promoter regions of genes that are hypothesized to be targets of a transcription factor for the occurrence of a binding site motif.
 
 Starting data:
 
@@ -16,7 +16,7 @@ Starting data:
 
 * [RefSeq GFF file](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/146/045/GCF_000146045.2_R64/GCF_000146045.2_R64_genomic.gff.gz) -- A GFF file for Saccharomyces cerevisiae Genome release 64.3.1.
 
-* [RefSeq FASTA file](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/146/045/GCF_000146045.2_R64/GCF_000146045.2_R64_genomic.fna.gz) -- gzipd FASTA file with DNA sequence of the S. cerevisiae genome.
+* [RefSeq FASTA file](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/146/045/GCF_000146045.2_R64/GCF_000146045.2_R64_genomic.fna.gz) -- compressed FASTA file with DNA sequence of the S. cerevisiae genome.
 
 * [STE12 Targets](https://raw.githubusercontent.com/Bio724/Bio724-Example-Data/main/STE12_targets.tsv) -- I downloaded this from SGD for this example, but would typically come from something like a clustering analysis.
 
@@ -30,7 +30,7 @@ Starting data:
 
 * Use filtered GFF in combination with [SeqKit](https://bioinf.shenwei.me/seqkit/) to extract promoter regions 
 
-* Count occurences of motif in each promoter 
+* Count occurrences of motif in each promoter 
 
 * Create a table with Systematic Name and Motif Count 
 
@@ -186,7 +186,7 @@ CAATATTCCCAAAAAGAGCATCAGACGATCTGGTTATGGTTTTTCTTGACTATAACCTTA
 
 ---
 
-**Side note**: Wondering about GFF vs GTF files? See [this explanation](http://genome.ucsc.edu/FAQ/FAQformat.html#format4) at the UCSC genome browswer website. Essentially GTF is an extension of an older "GFF" format called GFF2; our "GFF" files are "GFF3" files which are largely backwards compatible with the older GFF2/GTF format.
+**Side note**: Wondering about GFF vs GTF files? See [this explanation](http://genome.ucsc.edu/FAQ/FAQformat.html#format4) at the UCSC genome browser website. Essentially GTF is an extension of an older "GFF" format called GFF2; our "GFF" files are "GFF3" files which are largely backwards compatible with the older GFF2/GTF format.
 
 ---
 
@@ -203,11 +203,11 @@ paste target-systnames.txt <(seqkit seq -n target-promoters.fna) <(seqkit seq -s
 
 Explanation:
 
-* `<(...)` = treat the outputs of the commands in the parenthes as if they were files via [process substitution](https://github.com/Bio724/Bio724-Lecture-Notes/blob/main/lecture-awk-bash/bash.md#process-substitution)
+* `<(...)` = treat the outputs of the commands in the parentheses as if they were files via [process substitution](https://github.com/Bio724/Bio724-Lecture-Notes/blob/main/lecture-awk-bash/bash.md#process-substitution)
 * `seqkit seq -n` = only return  the names of each sequence
 * `seqkit seq -s -w 0` = only return the sequences themselves and unwrap the lines (`-w 0`)
 
-### Counting occurences of binding site motifs in one sequence
+### Counting occurrences of binding site motifs in one sequence
 
 Now we're ready to search for binding site motifs in our promoter sequences. We'll use regular expressions, as expressed in `grep` to do that.  We'll  start by demonstrating this with just a single sequence. 
 
@@ -221,7 +221,7 @@ Explanation:
 
 * `head -n 1` = extract the first line from the file
 * `grep -i` = ignore case
-* `[TA]` etc = match one of these characters
+* `[TA]` etc. = match one of these characters
 
 If your terminal is setup to highlight matches returned by `grep` you'll see the matches highlighted in the output. If not you'll just see the line itself indicating that there was at least one match. To get a list of the specific matches we can modify the command line as follows (addition of `-o` flag to grep):
 
@@ -252,7 +252,7 @@ Explanation:
 
   An equivalent way to construct this would have been to write it as: `echo {3} | grep -i -o "[TA][GA]AAAC[AGT]"` but I thought the "here string" is a little more compact. 
 
-* `$(grep ... | wc -l)` = an example of [command subsitution](https://github.com/Bio724/Bio724-Lecture-Notes/blob/main/lecture-awk-bash/bash.md#command-substitution). The pipeline within `$(...)` is evaluated and then turned into a string.
+* `$(grep ... | wc -l)` = an example of [command substitution](https://github.com/Bio724/Bio724-Lecture-Notes/blob/main/lecture-awk-bash/bash.md#command-substitution). The pipeline within `$(...)` is evaluated and then turned into a string.
 
 * `echo -e {1} "\t" $(grep ...)` = use `echo` to output the first field (systematic names) from the parallel input along with a TAB character and the command substitution discussed above.
 

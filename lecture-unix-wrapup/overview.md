@@ -1,9 +1,8 @@
 
 # System administration tasks
 
-* Bash startup scripts
-* Setting the `PATH` variable
-
+* [Bash startup files](./bash-startup.md)
+* [Setting the `PATH` variable](./setting-the-path.md)
 
 # Bash 
 

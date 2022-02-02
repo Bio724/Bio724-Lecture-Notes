@@ -14,7 +14,7 @@ These two files were derived from standard GFF annotation files downloaded from 
 3. The start coordinate of the feature
 4. The end coordinate of the feature
 5. The coding strand , +, -, or . (no strand) of the feature
-6. A free form field that includes information on systematic IDs, common gene names, short descriptions, etc
+6. A free form field that includes information on systematic IDs, common gene names, short descriptions, etc.
 
 
 

@@ -1,11 +1,11 @@
 ## Mac OS
 
 * Root = `/`
-* Other disks (USB, etc) mounted under `/Volumes`
+* Other disks (USB, etc.) mounted under `/Volumes`
 * User directories under `/Users`; your home directory at `/Users/yourusername`
 * System wide applications under `/Applications`; users can also install applications under `/Users/username/Applicatons`
 * User specific config files under `/Users/username/Library` (hidden by default)
-* Unix related executables under `/bin`, `/sbin`, etc
+* Unix related executables under `/bin`, `/sbin`, etc.
 * `PATH` is an environment variable, settable from command line or `~/.profile`
 
 

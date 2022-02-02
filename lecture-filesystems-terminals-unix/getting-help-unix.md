@@ -11,7 +11,7 @@ When read a man page you can use the arrow keys to move up/down line by line, `<
 
 ## `info`
 
-`info` is another help program available on Unix systems built around the GNU core utilities.  `info` is typically wordier annd more detaile and often includes examples of use.
+`info` is another help program available on Unix systems built around the GNU core utilities.  `info` is typically wordier and more detailed and often includes examples of use.
 
 
 Example:

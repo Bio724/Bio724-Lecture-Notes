@@ -1,7 +1,7 @@
 
 # Package Managers on Linux Systems
 
-Most popular Linux-based operating systems provide a package manager for installing software.  You can think of a package manager as aking to an "App Store", and most Linux desktop environments (e.g. Gnome, KDE) provide a simple point and click software installation interface that is very much like the app stores you are familiar with on Mac OS or Windows.  Since we're working with a remote VM, we'll see how to install software packages from the command line.
+Most popular Linux-based operating systems provide a package manager for installing software.  You can think of a package manager as akin to an "App Store", and most Linux desktop environments (e.g. Gnome, KDE) provide a simple point and click software installation interface that is very much like the app stores you are familiar with on Mac OS or Windows.  Since we're working with a remote VM, we'll see how to install software packages from the command line.
 
 On derivates of Debian Linux (which includes Ubuntu, the system we're using on our VMs) the package manager is a tool called `apt`.  We can use the `apt` command to search for software as well as install software.
 
@@ -41,7 +41,7 @@ To install a package using `apt` we can use the `install` subcommand:
 sudo apt install gawk
 ```
 
-This time we invoked `apt` by prefixing it with the `sudo` command ("super user do"). `sudo` is the command line equivalent of saying "invoke the following command with Administrator priveleges". Like on a Mac or Windows machine, for security reasons, installing software "globally" on a Unix-based system requires you have administrative rights on a system.  You'll be prompted to enter your password (your NetID password in the case of your VM) before the `apt install` subcommand will work.
+This time we invoked `apt` by prefixing it with the `sudo` command ("super user do"). `sudo` is the command line equivalent of saying "invoke the following command with Administrator privileges". Like on a Mac or Windows machine, for security reasons, installing software "globally" on a Unix-based system requires you have administrative rights on a system.  You'll be prompted to enter your password (your NetID password in the case of your VM) before the `apt install` subcommand will work.
 
 ### Your turn
 

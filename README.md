@@ -7,3 +7,4 @@
 
 3. [Awk and Bash Scripting](lecture-awk-bash/overview.md)
 
+4. [Unix wrap-up](lecture-unix-wrapup/overview.md)

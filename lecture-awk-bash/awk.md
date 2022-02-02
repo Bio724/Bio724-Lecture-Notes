@@ -184,9 +184,9 @@ For a full exposition on Awk's arrays, read the Gawk manual on the [Basics of Ar
     awk -F "\t" `{print "There are", NF, "fields in line", FNR}` yeast_features.txt 
     ```
 
-* Field separators -- both the input field seperator (`FS`) and the output field separator (`OFS`) can be specified in an Awk program. This is usually done in a `BEGIN` rule:
+* Field separators -- both the input field separator (`FS`) and the output field separator (`OFS`) can be specified in an Awk program. This is usually done in a `BEGIN` rule:
 
-  * `firstlast_csv.awk` -- outputs first and last fields of input file in CSV separated fileds
+  * `firstlast_csv.awk` -- outputs first and last fields of input file in CSV separated fields
 
     ```awk
     BEGIN {

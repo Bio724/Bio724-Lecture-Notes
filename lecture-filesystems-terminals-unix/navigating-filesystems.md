@@ -1,7 +1,7 @@
 
 ## Commands for navigating the file system on Unix based systems 
 
-NOTE: The following commands also work in Windows Powershell
+NOTE: The following commands also work in Windows PowerShell
 
 * `pwd` -- prints name of your "working" directory (i.e. the directory you're currently in)
 * `ls` -- lists the contents of the working directory

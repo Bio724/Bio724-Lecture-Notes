@@ -8,3 +8,5 @@
 3. [Awk Scripting](lecture-awk/overview.md)
 
 4. [Bash Scripting](lecture-bash/overview.md)
+
+5. [Introduction to R](lecture-intro-R/overview.md)

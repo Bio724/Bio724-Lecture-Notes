@@ -32,3 +32,5 @@
     - The advantage of this is it makes it easy to sort and search by date
 
 * Try and be consistent in your naming schemes. I promise this will make your life (and/or that of your collaborators) easier at some point in your research career!
+
+* See further recommendations from [Iowa Stat University's Open Research Data Repository](https://instr.iastate.libguides.com/datashare/filenames)

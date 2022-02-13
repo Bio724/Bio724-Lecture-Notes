@@ -9,7 +9,7 @@
 ## Mac OS
 
 * Terminal accessed by running "Terminal" program (in the "Applications/Utilities" folder)
-* Default shell is [zsh](https://www.zsh.org/)
+* Default shell is [zsh](https://www.zsh.org/); but bash also included by default (invoke at command line by typing `bash`)
 
 ## Windows
 

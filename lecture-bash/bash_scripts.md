@@ -275,7 +275,7 @@ Now we can generate feature counts for each genome by creating a bash script cal
 ```bash
 # multi_species_count.sh
 
-parallel --colsep="," 'mkdir -p {1}; ./feature_count.sh {2} {1} > {1}/ftrcounts.csv' :::: genomelist2.csv
+parallel --colsep="," 'mkdir -p {1}; ./feature_count.sh {2} {1} > {1}/ftrcounts.csv' :::: genomelist.csv
 ```
 
 and run this as:

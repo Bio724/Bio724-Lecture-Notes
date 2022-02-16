@@ -1,0 +1,157 @@
+---
+title: "ggplot2-intro"
+author: "Paul M. Magwene"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Data frame example
+
+```{r,echo=FALSE,warning=FALSE}
+library(tidyverse)
+library(viridis)
+```
+
+
+```{r, echo=TRUE}
+head(iris)
+```
+
+## Data + Geometric Representation + Aesthetic qualities
+
+```
+library(ggplot2) # import ggplot2 functions
+
+ggplot(data = <DATA>) + <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
+
+```
+
+## Example 1
+
+```{r, echo=TRUE, fig.width=6, fig.height=4}
+ggplot(data = iris) + geom_histogram(mapping = aes(x = Sepal.Length))
+```
+
+## Example 2
+
+```{r, echo=TRUE, fig.width=6, fig.height=4}
+ggplot(data = iris) + geom_boxplot(mapping = aes(x = Species,
+                                                 y = Sepal.Length))
+```
+
+
+## Example 3
+
+```{r, echo=TRUE, fig.width=5, fig.height=3}
+ggplot(data = iris) + geom_boxplot(mapping = aes(x = Species,
+                                                 y = Sepal.Length)) +
+                      geom_jitter(mapping = aes(x = Species,
+                                                y = Sepal.Length,
+                                                color = Species),
+                                  width = 0.2)
+                                  
+```
+
+
+## Faceting (conditioning)
+
+```{r, echo=TRUE, fig.width=3, fig.height=3}
+ggplot(data = iris, aes(x = Sepal.Length, fill=Species)) + 
+  geom_histogram(bins=15) + facet_wrap(~Species,ncol=1)
+```
+
+
+## Tour of useful `geoms`: Density plots
+
+```{r, echo=TRUE, fig.width=6, fig.height=4}
+ggplot(data = iris, aes(x = Sepal.Length, fill=Species)) + 
+  geom_density(alpha=0.5)
+```
+
+## Tour of useful `geoms`: Violin plots
+
+```{r, echo=TRUE, fig.width=5, fig.height=3}
+ggplot(data = iris, aes(x = Species, 
+                        y = Sepal.Length, 
+                        fill=Species)) + 
+  geom_violin(alpha=0.5)
+```
+
+## Tour of useful `geoms`: Scatter plots
+
+```{r, echo=TRUE, fig.width=5, fig.height=3}
+ggplot(data = iris, aes(x = Sepal.Length, 
+                        y = Sepal.Width, 
+                        color=Species)) + 
+  geom_point(alpha=0.5)
+```
+
+
+## Tour of useful `geoms`: 2D density plots
+
+```{r, echo=TRUE, fig.width=6, fig.height=2}
+ggplot(data = iris, aes(x = Sepal.Length, 
+                        y = Sepal.Width, 
+                        color=Species)) + 
+  geom_density_2d() + 
+  geom_point(alpha=0.5,size=1) +
+  facet_wrap(~Species)
+  
+```
+
+
+## Tour of useful `geoms`: Line plot
+
+```{r,echo=FALSE}
+library(dplyr)
+library(tidyr)
+covid <- read_csv("~/Desktop/us.csv")
+glimpse(covid)
+```
+## Tour of useful `geoms`: Line plot
+
+```{r, echo=TRUE, fig.width=6, fig.height=2}
+ggplot(data = covid, aes(x = date, y = deaths)) + 
+  geom_line()
+```
+
+## Tour of useful `geoms`: Area plot
+
+```{r, echo=TRUE, fig.width=6, fig.height=2}
+ggplot(data = covid, aes(x = date, y = deaths)) + 
+  geom_area(fill="firebrick")
+```
+
+
+## Tour of useful `geoms`: Heat maps
+
+```{r}
+iris_cor <-
+  iris %>%
+  select(-Species) %>%
+  cor() %>%
+  as_tibble(rownames="Variable_1") %>%
+  pivot_longer(2:5, names_to="Variable_2",values_to = "Correlation") 
+
+ggplot(iris_cor, 
+       aes(x=Variable_1, y=Variable_2, fill=Correlation)) + 
+  geom_tile()
+```
+```{r,fig.height=5, fig.width=8,echo=TRUE}
+us_states <- read_csv("~/Desktop/us-states.csv")
+
+SE_states <- c("North Carolina","South Carolina",
+               "Arkansas","Georgia","Tennessee",
+               "Louisiana","Alabama","Florida")
+
+us_states %>%
+  filter(state %in% SE_states) %>%
+  arrange(state) %>%
+  ggplot(aes(x=date, y=state, fill=cases_avg_per_100k)) + 
+    geom_tile() +
+    scale_fill_viridis(option = "C")
+```
+

@@ -10,3 +10,5 @@
 4. [Bash Scripting](lecture-bash/overview.md)
 
 5. [Introduction to R](lecture-intro-R/overview.md)
+
+5. [ggplot and dplyr](lecture-ggplot-dplyr/overview.md)

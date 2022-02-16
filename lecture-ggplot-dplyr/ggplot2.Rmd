@@ -63,6 +63,25 @@ ggplot(data = iris, aes(x = Sepal.Length, fill=Species)) +
   geom_histogram(bins=15) + facet_wrap(~Species,ncol=1)
 ```
 
+## Theming
+
+```{r, echo=TRUE}
+ggplot(data = iris, aes(x = Sepal.Length, fill=Species)) + 
+  geom_histogram(bins=15) + facet_wrap(~Species,ncol=1) +
+  theme(aspect.ratio = 0.5, legend.position = "none")
+```
+
+```{r, echo=TRUE}
+ggplot(data = iris, aes(x = Sepal.Length, fill=Species)) + 
+  geom_histogram(bins=15) + facet_wrap(~Species,ncol=1) +
+  theme_classic() + theme(aspect.ratio = 0.5, legend.position = "none")
+```
+
+```{r, echo=TRUE}
+ggplot(data = iris, aes(x = Sepal.Length, fill=Species)) + 
+  geom_histogram(bins=15) + facet_wrap(~Species,ncol=1) +
+  theme_bw() + theme(aspect.ratio = 0.5, legend.position = "none")
+```
 
 ## Tour of useful `geoms`: Density plots
 
@@ -105,10 +124,10 @@ ggplot(data = iris, aes(x = Sepal.Length,
 
 ## Tour of useful `geoms`: Line plot
 
-```{r,echo=FALSE}
+```{r,echo=FALSE, results=FALSE}
 library(dplyr)
 library(tidyr)
-covid <- read_csv("~/Desktop/us.csv")
+covid <- read_csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/rolling-averages/us.csv")
 glimpse(covid)
 ```
 ## Tour of useful `geoms`: Line plot

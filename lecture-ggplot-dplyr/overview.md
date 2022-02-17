@@ -34,8 +34,8 @@
             geom_histogram() + facet_wrap(~species, ncol=1) ->> my_plot} %>%
         group_by(species) %>% 
         summarize(count = n(),
-                    mean_body_mass = mean(body_mass_g, na.rm=TRUE),
-                    sd_body_mass = sd(body_mass_g, na.rm=TRUE))
+                  mean_body_mass = mean(body_mass_g, na.rm=TRUE),
+                  sd_body_mass = sd(body_mass_g, na.rm=TRUE))
     ```
 
 

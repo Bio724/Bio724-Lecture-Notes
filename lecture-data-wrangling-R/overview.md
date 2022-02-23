@@ -9,6 +9,8 @@
 
 ## Slides
 
+* [Data wranglining in R](https://bio724.github.io/Bio724-web-pages/slides-data-wrangling-R.html)
+
 
 
 ## Example Data

@@ -11,4 +11,8 @@
 
 5. [Introduction to R](lecture-intro-R/overview.md)
 
-5. [ggplot and dplyr](lecture-ggplot-dplyr/overview.md)
+6. [ggplot and dplyr](lecture-ggplot-dplyr/overview.md)
+
+7. [Data Wrangling in R](lecture-data-wrangling-R/overview.md)
+
+8. [Introduction to Vectors and Functions in R](lecture-functions-and-vector-math-R/overview.md)

@@ -16,3 +16,5 @@
 7. [Data Wrangling in R](lecture-data-wrangling-R/overview.md)
 
 8. [Introduction to Vectors and Functions in R](lecture-functions-and-vector-math-R/overview.md)
+
+9. [Hierarchical and K-means Clustering](lecture-clustering/overview.md)

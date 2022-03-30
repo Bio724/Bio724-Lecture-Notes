@@ -10,7 +10,6 @@
 ## Libraries to install for in-class examples
 
 * imageio
-*
 
 ## Data for in-class examples
 

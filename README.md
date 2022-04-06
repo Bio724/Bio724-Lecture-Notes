@@ -18,3 +18,9 @@
 8. [Introduction to Vectors and Functions in R](lecture-functions-and-vector-math-R/overview.md)
 
 9. [Hierarchical and K-means Clustering](lecture-clustering/overview.md)
+
+10. [Introduction to Python](lecture-intro-python-1/overview.md)
+
+11. [Introduction to the Python Scientific Ecosystem](lecture-intro-python-scientific-ecosystem/overview.md)
+
+12. [Simulation in Python](lecture-simulation-python/overview.md)

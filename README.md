@@ -24,3 +24,5 @@
 11. [Introduction to the Python Scientific Ecosystem](lecture-intro-python-scientific-ecosystem/overview.md)
 
 12. [Simulation in Python](lecture-simulation-python/overview.md)
+
+13. [Writing Command Line Programs in Python](lecture-python-command-line-programs/overview.md)
